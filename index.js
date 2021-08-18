@@ -7,11 +7,15 @@ const removeContent = (target) => {
     target.innerHTML = "";
 }
 
+const setContentAndValue = (target, value) => {
+    target.textContent = value;
+    target.value = target.textContent;
+};
+
 const createButton = value => {
     const button = document.createElement('button');
-    button.textContent = value + 1;
+    setContentAndValue(button, value + 1);
     button.type = "button";
-    button.value = button.textContent;
     return button;
 }
 
@@ -21,7 +25,7 @@ const optionsHandler = (e) => {
     const target = e.target;
 
     if (target.closest('button')) {
-        choice.textContent = e.target.value;
+        setContentAndValue(choice, target.value);
         removeContent(options);
     }
 
